@@ -1,0 +1,107 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Tasks {
+  id: Int!
+  title: String!
+  description: String!
+  userId: Int!
+}
+
+type Users {
+  id: Int!
+  name: String!
+  email: String!
+  password: String
+}
+
+type ResponsePayload {
+  status: Float!
+  message: String!
+}
+
+type CreatUserPayload {
+  user: Users!
+  response: ResponsePayload!
+}
+
+type DeleteUserResponsePayload {
+  status: Float!
+  message: String!
+}
+
+type DeleteUserPayload {
+  response: DeleteUserResponsePayload!
+}
+
+type signInResponsePayload {
+  status: Float!
+  message: String!
+}
+
+type UserPayload {
+  accessToken: String!
+  response: signInResponsePayload!
+}
+
+type UpdatedUser {
+  name: String!
+  email: String!
+  password: String!
+}
+
+type Query {
+  findAllTasks(findAll: FindAllInput!): [Tasks!]!
+}
+
+input FindAllInput {
+  userId: Int!
+}
+
+type Mutation {
+  signUp(createUserInput: CreateUserInput!): CreatUserPayload!
+  signIn(user: CreateUserInput!): UserPayload!
+  deleteUserById(deleteUserById: DeleteUsserByIdInput!): DeleteUserPayload
+  updateUser(updateUser: UpdateUserInput!): UpdatedUser!
+  createTask(createTaskDto: CreateTaskDto!): Tasks!
+  updateTaskByTaskId(taskUpdate: UpdateTaskDto!): Tasks!
+  deleteTaskByTaskId(taskDeleteById: TaskDelInput!): Tasks
+  deleteTaskByUserId(taskDeleteByUserId: DeleteTaskByUserId!): Tasks
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input DeleteUsserByIdInput {
+  id: Float!
+}
+
+input UpdateUserInput {
+  email: String!
+  password: String!
+  updatedName: String!
+  updatedPassword: String!
+}
+
+input CreateTaskDto {
+  title: String!
+  description: String!
+}
+
+input UpdateTaskDto {
+  title: String!
+  description: String!
+  id: Int!
+}
+
+input TaskDelInput {
+  taskId: Int!
+}
+
+input DeleteTaskByUserId {
+  userId: Int!
+}
