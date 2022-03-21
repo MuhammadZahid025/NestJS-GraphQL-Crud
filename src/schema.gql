@@ -51,6 +51,25 @@ type UpdatedUser {
   password: String!
 }
 
+type CreateTaskResponsePayload {
+  status: Float!
+  message: String!
+}
+
+type CreateTaskPayload {
+  task: Tasks!
+  response: CreateTaskResponsePayload!
+}
+
+type DeleteTaskByIdResponsePayload {
+  status: Float!
+  message: String!
+}
+
+type DeleteTaskbyIdPayload {
+  response: DeleteTaskByIdResponsePayload!
+}
+
 type Query {
   findAllTasks(findAll: FindAllInput!): [Tasks!]!
 }
@@ -64,9 +83,9 @@ type Mutation {
   signIn(user: CreateUserInput!): UserPayload!
   deleteUserById(deleteUserById: DeleteUsserByIdInput!): DeleteUserPayload
   updateUser(updateUser: UpdateUserInput!): UpdatedUser!
-  createTask(createTaskDto: CreateTaskDto!): Tasks!
+  createTask(createTaskDto: CreateTaskDto!): CreateTaskPayload!
   updateTaskByTaskId(taskUpdate: UpdateTaskDto!): Tasks!
-  deleteTaskByTaskId(taskDeleteById: TaskDelInput!): Tasks
+  deleteTaskByTaskId(taskDeleteById: TaskDelInput!): DeleteTaskbyIdPayload
   deleteTaskByUserId(taskDeleteByUserId: DeleteTaskByUserId!): Tasks
 }
 
