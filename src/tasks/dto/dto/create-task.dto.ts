@@ -5,80 +5,97 @@ import { Tasks } from "src/tasks/entities/tasks.entity";
 @InputType()
 export class CreateTaskDto {
 
-@IsString()
-@MaxLength(20)
-@Field()
-title: string
+    @IsString()
+    @MaxLength(20)
+    @Field()
+    title: string
 
-@IsString()
-@MaxLength(50)
-@Field()
+    @IsString()
+    @MaxLength(50)
+    @Field()
 
-description: string
+    description: string
 }
 
 @InputType()
-export class  TaskDelInput {
-@Field(()=> Int)
-taskId:number;    
+export class TaskDelInput {
+    @Field(() => Int)
+    taskId: number;
 }
 
 @InputType()
-export class DeleteTaskByUserId{
-@Field(()=> Int)
-userId:number;
+export class DeleteTaskByUserId {
+    @Field(() => Int)
+    userId: number;
 }
 
 @InputType()
 export class FindAllInput {
-@Field(()=>Int)
-userId:number
+    @Field(() => Int)
+    userId: number
 }
 
 @InputType()
 export class UpdateTaskDto {
-@IsString()
-@MaxLength(20)
-@Field()
-title: string
+    @IsString()
+    @MaxLength(20)
+    @Field()
+    title: string
 
-@IsString()
-@MaxLength(50)
-@Field()
+    @IsString()
+    @MaxLength(50)
+    @Field()
 
-description: string
+    description: string
 
-@IsNumber()
-@Field(type=>Int)
-id: number
+    @IsNumber()
+    @Field(type => Int)
+    id: number
 
 }
 
 @ObjectType()
 export class CreateTaskResponsePayload {
-@Field()
-status: number;
+    @Field()
+    status: number;
 
-@Field()
-message: string;
+    @Field()
+    message: string;
 }
 @ObjectType()
-export class CreateTaskPayload{
-@Field()
-task: Tasks;
+export class CreateTaskPayload {
+    @Field()
+    task: Tasks;
 
-@Field()
-response?: CreateTaskResponsePayload;
+    @Field()
+    response?: CreateTaskResponsePayload;
+}
+
+ObjectType()
+export class UpdateTaskResponsePayload {
+    @Field()
+    status: number;
+
+    message: string;
+}
+
+ObjectType()
+export class UpdateTaskPayLoad {
+    @Field()
+    task: Tasks;
+
+    @Field()
+    response?: UpdateTaskResponsePayload;
 }
 
 
 @ObjectType()
-export class DeleteTaskByIdResponsePayload{
-@Field()
-status: number;
+export class DeleteTaskByIdResponsePayload {
+    @Field()
+    status: number;
 
-@Field()
-message: string;
+    @Field()
+    message: string;
 }
 
 
@@ -86,6 +103,6 @@ message: string;
 @ObjectType()
 export class DeleteTaskbyIdPayload {
 
-@Field()
-response?: DeleteTaskByIdResponsePayload
+    @Field()
+    response?: DeleteTaskByIdResponsePayload
 }

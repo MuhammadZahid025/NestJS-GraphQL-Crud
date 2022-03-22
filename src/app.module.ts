@@ -1,14 +1,11 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './config/typeorm.config';
 import { TasksModule } from './tasks/tasks.module';
 import { join } from 'path';
-import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -17,14 +14,13 @@ import { ProductsModule } from './products/products.module';
       driver: ApolloDriver,
 
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      context: ({req})=>({req})
+      context: ({ req }) => ({ req })
     }),
 
     UsersModule,
     TasksModule,
-    ProductsModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule { }

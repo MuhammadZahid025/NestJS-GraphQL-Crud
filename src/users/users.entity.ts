@@ -5,22 +5,22 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 @ObjectType()
 export class Users {
-@PrimaryGeneratedColumn()
-@Field((type) => Int)
-id: number;
+    @PrimaryGeneratedColumn()
+    @Field((type) => Int)
+    id: number;
 
-@Column()
-@Field()
-name: string;
+    @Column()
+    @Field()
+    name: string;
 
-@Column()
-@Field()
-email: string;
+    @Column()
+    @Field()
+    email: string;
 
-@Column()
-@Field({ nullable: true })
-password: string;
+    @Column()
+    @Field({ nullable: true })
+    password: string;
 
-@OneToMany((type) => Tasks, (tasks) => tasks.user)
-tasks: Tasks[];
+    @OneToMany((type) => Tasks, (tasks) => tasks.user)
+    tasks: Tasks[];
 }

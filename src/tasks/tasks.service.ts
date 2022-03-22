@@ -23,13 +23,17 @@ export class TasksService {
   async createTask(createTaskDto: CreateTaskDto, userId: number,): Promise<CreateTaskPayload> {
     try {
       const { title, description } = createTaskDto;
+      const user = await this.userService.findUserById(userId)
+      console.log("user" , user)
       const task = this.tasksRepository.create({
         title,
         description,
         userId: userId,
       });
-      return { 
-        task: await this.tasksRepository.save(task) ,
+      //association
+      task.user = user;
+      return {
+        task: await this.tasksRepository.save(task),
         response: { status: 200, message: 'Task created Successfully' }
       };
     } catch (error) {
@@ -72,9 +76,7 @@ export class TasksService {
     }
   }
 
-  async deleteTaskByUserId(
-    deleteTaskByUserId: DeleteTaskByUserId,
-  ): Promise<void> {
+  async deleteTaskByUserId(deleteTaskByUserId: DeleteTaskByUserId,): Promise<void> {
     try {
       const result = await this.tasksRepository.delete({
         userId: deleteTaskByUserId.userId,
@@ -82,6 +84,15 @@ export class TasksService {
       console.log(result);
     } catch (error) {
       throw new InternalServerErrorException(error);
+    }
+  }
+
+  async getAllTasksComp(): Promise<Tasks[]>{
+    try {
+      const allTasks = await this.tasksRepository.find()
+      return allTasks
+    } catch (error) {
+      throw new InternalServerErrorException(error)
     }
   }
 }

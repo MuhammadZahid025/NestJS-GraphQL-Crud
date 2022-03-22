@@ -47,5 +47,10 @@ export class TasksResolver {
         return this.tasksService.deleteTaskByUserId(deleteTaskByUserId);
     }
 
+    @Query(()=>[Tasks])
+    async getAllTasksComp (): Promise <Tasks[]>{
+        return this.tasksService.getAllTasksComp()
+    }
+
 
 }

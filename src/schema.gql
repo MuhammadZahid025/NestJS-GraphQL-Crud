@@ -71,7 +71,9 @@ type DeleteTaskbyIdPayload {
 }
 
 type Query {
+  getAllUserComp: [Users!]!
   findAllTasks(findAll: FindAllInput!): [Tasks!]!
+  getAllTasksComp: [Tasks!]!
 }
 
 input FindAllInput {
