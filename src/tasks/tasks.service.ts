@@ -24,13 +24,11 @@ export class TasksService {
     try {
       const { title, description } = createTaskDto;
       const user = await this.userService.findUserById(userId)
-      console.log("user" , user)
       const task = this.tasksRepository.create({
         title,
         description,
         userId: userId,
       });
-      //association
       task.user = user;
       return {
         task: await this.tasksRepository.save(task),
