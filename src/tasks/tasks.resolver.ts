@@ -22,7 +22,7 @@ export class TasksResolver {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Mutation((returns) => Tasks)
+    @Mutation(() => Tasks)
     async updateTaskByTaskId(@Args('taskUpdate') updateTaskDto: UpdateTaskDto, @CurrentUser() user: Users): Promise<Tasks> {
         return await this.tasksService.updateTaskByTaskId(updateTaskDto);
     }

@@ -1,7 +1,7 @@
-import {ForbiddenException,HttpException,HttpStatus,Injectable,InternalServerErrorException,NotFoundException,UnauthorizedException,} from '@nestjs/common';
+import { ForbiddenException, HttpException, HttpStatus, Injectable, InternalServerErrorException, NotFoundException, UnauthorizedException, } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import {CreateUserInput,DeleteUsserByIdInput,UpdateUserInput,} from './dto/create-user.input';
+import { CreateUserInput, DeleteUsserByIdInput, UpdateUserInput, } from './dto/create-user.input';
 import { Users } from './users.entity';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
@@ -80,12 +80,10 @@ export class UsersService {
     });
   }
   async findUserById(id: number) {
-    return await this.userRepository.findOne({ where : { id }});
+    return await this.userRepository.findOne({ where: { id } });
   }
 
-  async deleteUserById(
-    deleteUserByIdInput: DeleteUsserByIdInput,
-  ): Promise<void> {
+  async deleteUserById(deleteUserByIdInput: DeleteUsserByIdInput,): Promise<void> {
     try {
       const result = await this.userRepository.delete({
         id: deleteUserByIdInput.id,
@@ -132,7 +130,7 @@ export class UsersService {
       });
     }
   }
-  async getAllUserComp(): Promise<Users[]>{
+  async getAllUserComp(): Promise<Users[]> {
     try {
       const allUsers = await this.userRepository.find()
       return allUsers
@@ -140,5 +138,5 @@ export class UsersService {
       throw new InternalServerErrorException(error)
     }
   }
-
+  
 }

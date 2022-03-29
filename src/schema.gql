@@ -2,11 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Product {
+  id: Int!
+  name: String!
+  productCode: Float!
+}
+
 type Tasks {
   id: Int!
   title: String!
   description: String!
   userId: Int!
+}
+
+type Address {
+  id: Int!
+  street: String
+  city: String
+  country: String
 }
 
 type Users {
@@ -85,10 +98,12 @@ type Mutation {
   signIn(user: CreateUserInput!): UserPayload!
   deleteUserById(deleteUserById: DeleteUsserByIdInput!): DeleteUserPayload
   updateUser(updateUser: UpdateUserInput!): UpdatedUser!
+  createAddress(createAddress: CreateAddressDto!): Address!
   createTask(createTaskDto: CreateTaskDto!): CreateTaskPayload!
   updateTaskByTaskId(taskUpdate: UpdateTaskDto!): Tasks!
   deleteTaskByTaskId(taskDeleteById: TaskDelInput!): DeleteTaskbyIdPayload
   deleteTaskByUserId(taskDeleteByUserId: DeleteTaskByUserId!): Tasks
+  createProduct(createProductInput: CreateProductInput!): Product!
 }
 
 input CreateUserInput {
@@ -108,6 +123,12 @@ input UpdateUserInput {
   updatedPassword: String!
 }
 
+input CreateAddressDto {
+  street: String!
+  city: String!
+  country: String!
+}
+
 input CreateTaskDto {
   title: String!
   description: String!
@@ -125,4 +146,9 @@ input TaskDelInput {
 
 input DeleteTaskByUserId {
   userId: Int!
+}
+
+input CreateProductInput {
+  name: String!
+  productCode: Float!
 }

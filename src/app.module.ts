@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './config/typeorm.config';
 import { TasksModule } from './tasks/tasks.module';
 import { join } from 'path';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { join } from 'path';
 
     UsersModule,
     TasksModule,
+    ProductsModule,
   ],
   controllers: [],
   providers: [],

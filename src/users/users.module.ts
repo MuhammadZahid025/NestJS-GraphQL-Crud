@@ -6,10 +6,12 @@ import { Users } from './users.entity';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { AddressService } from './address.service.';
+import { Address } from './entities/address.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Users]),
+    TypeOrmModule.forFeature([Users , Address]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: 'secret1234',
@@ -20,7 +22,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 
 
   ],
-  providers: [UsersService, UsersResolver, JwtStrategy],
+  providers: [UsersService, UsersResolver, JwtStrategy , AddressService],
   exports: [UsersService, JwtModule],
 })
 export class UsersModule { }
